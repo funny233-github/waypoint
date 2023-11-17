@@ -56,8 +56,13 @@ waypointinfo(waypointname) -> (
   res = [];
 
   res += ' [ ';
-  res += str('!/mywaypoints del %s',waypointname);
-  res += str('^g /mywaypoints del %s',waypointname);
+  res += str('!/waypoints del %s',waypointname);
+  res += str('^g /waypoints del %s',waypointname);
+  res += ' ] ';
+
+  res += ' [ ';
+  res += str('!/waypoints tp %s',waypointname);
+  res += str('^g /waypoints tp %s',waypointname);
   res += ' ] ';
 
   res += str('blu %d %d %d',global_waypoints:waypointname:'pos');
