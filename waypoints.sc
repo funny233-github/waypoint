@@ -9,6 +9,7 @@ __config() -> {
     'del <waypointname>' -> 'del',
     'list' -> 'list',
     'dashboard' -> 'dashboard',
+    'tp <waypointname>' -> 'tp',
   },
 
   'arguments' -> {
@@ -109,7 +110,7 @@ del(waypointname) -> (
     print(player(),'Waypoint '+waypointname+' deleted.'),
 
     //else
-    _error('Waypoint'+waypointname+'does not exist'),
+    _error('Waypoint '+waypointname+' does not exist'),
   );
   savePoints();
 );
@@ -128,4 +129,20 @@ list() -> (
 
 dashboard() -> (
   print(player(),format('bc === DASH BOARD ==='));
+);
+
+tp(waypointname) ->(
+  player = player();
+  command = str('/execute in %s run tp @e[type=player,gamemode=!survival,gamemode=!adventure,name=%s] %s %s %s',
+    global_waypoints:waypointname:'dimension',
+    player,
+    global_waypoints:waypointname:'pos':0,
+    global_waypoints:waypointname:'pos':1,
+    global_waypoints:waypointname:'pos':2,
+  );
+  if(
+    run(command):0!=1, 
+    ,
+    _error('Your gamemode is survival or adventure, or waypoint does not exist');
+  );
 );
