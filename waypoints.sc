@@ -15,12 +15,12 @@ __config() -> {
   'arguments' -> {
 
     'name' -> {
-      'type' -> 'text',
+      'type' -> 'string',
       'suggest' -> [],
     },
 
     'waypointname' -> {
-      'type' -> 'text',
+      'type' -> 'string',
       'suggester' -> _(args) -> keys(global_waypoints),
     },
 
